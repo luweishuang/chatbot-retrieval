@@ -11,7 +11,7 @@ from models.dual_encoder import dual_encoder_model
 tf.flags.DEFINE_string("input_dir", "./data", "Directory containing input data files 'train.tfrecords' and 'validation.tfrecords'")
 tf.flags.DEFINE_string("model_dir", None, "Directory to store model checkpoints (defaults to ./runs)")
 tf.flags.DEFINE_integer("loglevel", 20, "Tensorflow log level")
-tf.flags.DEFINE_integer("num_epochs", None, "Number of training Epochs. Defaults to indefinite.")
+tf.flags.DEFINE_integer("num_epochs", 20, "Number of training Epochs. Defaults to indefinite.")
 tf.flags.DEFINE_integer("eval_every", 2000, "Evaluate after this many train steps")
 FLAGS = tf.flags.FLAGS
 
@@ -24,8 +24,8 @@ else:
 
 TRAIN_FILE = os.path.abspath(os.path.join(FLAGS.input_dir, "train.tfrecords"))
 VALIDATION_FILE = os.path.abspath(os.path.join(FLAGS.input_dir, "validation.tfrecords"))
-
 tf.logging.set_verbosity(FLAGS.loglevel)
+
 
 def main(unused_argv):
   hparams = udc_hparams.create_hparams()
@@ -59,6 +59,7 @@ def main(unused_argv):
         metrics=eval_metrics)
 
   estimator.fit(input_fn=input_fn_train, steps=None, monitors=[eval_monitor])
+
 
 if __name__ == "__main__":
   tf.app.run()

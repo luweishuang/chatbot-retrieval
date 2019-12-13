@@ -2,9 +2,9 @@ import tensorflow as tf
 
 TEXT_FEATURE_SIZE = 160
 
+
 def get_feature_columns(mode):
   feature_columns = []
-
   feature_columns.append(tf.contrib.layers.real_valued_column(
     column_name="context", dimension=TEXT_FEATURE_SIZE, dtype=tf.int64))
   feature_columns.append(tf.contrib.layers.real_valued_column(

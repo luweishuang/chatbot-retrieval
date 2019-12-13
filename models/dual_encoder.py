@@ -33,10 +33,8 @@ def dual_encoder_model(
   embeddings_W = get_embeddings(hparams)
 
   # Embed the context and the utterance
-  context_embedded = tf.nn.embedding_lookup(
-      embeddings_W, context, name="embed_context")
-  utterance_embedded = tf.nn.embedding_lookup(
-      embeddings_W, utterance, name="embed_utterance")
+  context_embedded = tf.nn.embedding_lookup(embeddings_W, context, name="embed_context")
+  utterance_embedded = tf.nn.embedding_lookup(embeddings_W, utterance, name="embed_utterance")
 
 
   # Build the RNN

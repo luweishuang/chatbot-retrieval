@@ -41,6 +41,7 @@ HParams = namedtuple(
     "vocab_path"
   ])
 
+
 def create_hparams():
   return HParams(
     batch_size=FLAGS.batch_size,
